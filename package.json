@@ -1,5 +1,8 @@
 {
   "devDependencies": {
     "typescript": "^2.1.4"
+  },
+   "scripts": {
+      "build": "./gradlew build;"
   }
 }
