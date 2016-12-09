@@ -3,11 +3,16 @@
     "typescript": "^2.1.4",
     "yarn": "^0.17.10"
   },
-   "scripts": {
-      "build": "./gradlew build;",
-      "clean": "./gradlew clean;",
-      "dev": "$XP_INSTALL/bin/server.sh dev;",
-      "install-app": "echo build/libs/*.jar|xargs -n1 $XP_INSTALL/toolbox/toolbox.sh install-app -a su:password -f ",
-      "start": "$XP_INSTALL/bin/server.sh;"
+  "license": "Apache-2.0",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/enonic/starter-typescript"
+  },
+  "scripts": {
+    "build": "./gradlew build;",
+    "clean": "./gradlew clean;",
+    "dev": "$XP_INSTALL/bin/server.sh dev;",
+    "install-app": "echo build/libs/*.jar|xargs -n1 $XP_INSTALL/toolbox/toolbox.sh install-app -a su:password -f ;",
+    "start": "$XP_INSTALL/bin/server.sh;"
   }
 }
