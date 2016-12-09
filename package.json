@@ -13,6 +13,8 @@
     "clean": "./gradlew clean;",
     "dev": "$XP_INSTALL/bin/server.sh dev;",
     "install-app": "echo build/libs/*.jar|xargs -n1 $XP_INSTALL/toolbox/toolbox.sh install-app -a su:password -f ;",
-    "start": "$XP_INSTALL/bin/server.sh;"
+    "start": "$XP_INSTALL/bin/server.sh;",
+    "tsc": "./node_modules/.bin/tsc",
+    "yarn": "./node_modules/.bin/yarn"
   }
 }
