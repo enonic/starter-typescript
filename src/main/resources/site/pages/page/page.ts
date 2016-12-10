@@ -1,24 +1,29 @@
 'use strict';
+/// <reference path="../../lib/xp/global.ts" />
+import { PageController } from '../../lib/xp/page/controller';
 
-export abstract class Controller {
-    public static get(request: Object) {};
-    response: Object;
-}
+const pageName = 'page';
+const viewFile = resolve(`${pageName}.html`);
+//const viewFile = `./${pageName}.html`;
 
-export default class PagePagesController extends Controller {
+export default class PagePageController extends PageController {
 
-    constructor(request) {
-        super();
-        this.response = {
-            body: '<html><body><h1>Hello, world!</h1></body></html>'
-        };
+    constructor(request: any) {
+        super(request);
+        this.componentName = pageName;
+        this.viewFile = viewFile;
     }
 
-    static get(request: Object) {
-        const controller = new PagePagesController(request);
-        return controller.response;
+    get() {
+        this.model.lang = 'nb-no';
+        this.model.title = 'Title';
+        return super.get();
     }
 
-} // PagePagesController
+    public static handleRequest(request: any) {
+        return new PagePageController(request).buildResponse().response;
+    }
 
-export const get = PagePagesController.get;
+} // PagePageController
+
+export const get = PagePageController.handleRequest;
