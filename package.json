@@ -1,6 +1,7 @@
 {
   "devDependencies": {
     "typescript": "^2.1.4",
+    "typings": "^2.0.0",
     "yarn": "^0.17.10"
   },
   "license": "Apache-2.0",
@@ -15,6 +16,7 @@
     "install-app": "echo build/libs/*.jar|xargs -n1 $XP_INSTALL/toolbox/toolbox.sh install-app -a su:password -f ;",
     "start": "$XP_INSTALL/bin/server.sh;",
     "tsc": "node_modules/.bin/tsc",
+    "typings": "typings",
     "watch": "node_modules/.bin/tsc -w;",
     "yarn": "node_modules/.bin/yarn"
   }
