@@ -46,3 +46,24 @@ repositories {
         url 'http://repo.enonic.com/public'
     }
 }
+
+//──────────────────────────────────────────────────────────────────────────────
+// Gradle
+//──────────────────────────────────────────────────────────────────────────────
+
+tasks.withType(Copy) {
+  includeEmptyDirs = false
+}
+
+sourceSets {
+    main {
+        java {
+            srcDir 'src/main/java'
+        }
+        resources {
+            srcDir 'src/main/resources'
+            exclude '**/.gitkeep'
+            exclude '**/*.ts'
+        }
+    }
+}
