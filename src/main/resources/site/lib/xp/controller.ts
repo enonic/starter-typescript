@@ -17,7 +17,6 @@ const xpThymeleafRender     = libs.xp.thymeleaf.render;
 export abstract class Controller {
     body: string;
     component: any;
-    componentName: string;
     config: any;
     content: any;
     cookies: any;
@@ -25,11 +24,14 @@ export abstract class Controller {
     method: string;
     mode: string;
     model: any;
+    name: string;
     params: any;
     request: any;
     response: any;
+    responseContentType: string;
     siteConfig: any;
     status: number;
+    type: string;
     viewFile: string; // resolved path
 
     constructor(request: any) {
@@ -50,17 +52,18 @@ export abstract class Controller {
     } // constructor
 
     debug() {
-        //log.info(`controller:${JSON.stringify(this, null, 4)}`); // Everything can be too much :)
-        /*
-        log.info(`request:${JSON.stringify(this.request, null, 4)}`);
-        log.info(`component:${JSON.stringify(this.component, null, 4)}`);
-        log.info(`siteConfig:${JSON.stringify(this.siteConfig, null, 4)}`);
-        log.info(`config:${JSON.stringify(this.config, null, 4)}`);
-        */
-        log.info(`${this.componentName} model:${JSON.stringify(this.model, null, 4)}`);
-        //log.info(`response:${JSON.stringify(this.response, null, 4)}`);
+        log.info(`${this.name} ${this.type} config:${JSON.stringify(this.config, null, 4)}`);
+        log.info(`${this.name} ${this.type} model:${JSON.stringify(this.model, null, 4)}`);
         return this; // chainable
     }
+    /*
+    log.info(`${this.name} ${this.type} controller:${JSON.stringify(this, null, 4)}`); // Everything can be too much :)
+    log.info(`${this.name} ${this.type} content:${JSON.stringify(this.content, null, 4)}`);
+    log.info(`${this.name} ${this.type} request:${JSON.stringify(this.request, null, 4)}`);
+    log.info(`${this.name} ${this.type} siteConfig:${JSON.stringify(this.siteConfig, null, 4)}`);
+    log.info(`${this.name} ${this.type} component:${JSON.stringify(this.component, null, 4)}`);
+    log.info(`${this.name} ${this.type} response:${JSON.stringify(this.response, null, 4)}`);
+    */
 
     render() {
         log.debug(`Controller.render()`);
@@ -73,7 +76,7 @@ export abstract class Controller {
 
     get(): any {
         log.debug(`Controller.get()`);
-        this.model.componentName = this.componentName;
+        this.model.name = this.name;
         return this; // chainable
     }
 
@@ -81,9 +84,11 @@ export abstract class Controller {
         log.debug(`Controller.buildResponse()`);
         switch (this.method) { case 'GET': this.get(); break; }
         this.render();
+        this.responseContentType = 'text/html';
         this.status = 200;
         this.response = {
             body:   this.body,
+            contentType: this.responseContentType,
             status: this.status
         };
         this.debug();
@@ -105,12 +110,12 @@ export abstract class ControllerWithRegions extends Controller {
         this.regions = this.component.regions;
         this.model.regions = this.regions;
         this.model.regionsArray = Object.keys(this.regions).map(k=>this.regions[k]);
-        //log.info(`this.model.regions:${JSON.stringify(this.model.regions, null, 4)}`);
+        //log.info(`${this.name} ${this.type} this.model.regions:${JSON.stringify(this.model.regions, null, 4)}`);
     }
 
     debug() {
         super.debug();
-        //log.info(`regions:${JSON.stringify(this.regions, null, 4)}`);
+        //log.info(`${this.name} ${this.type} regions:${JSON.stringify(this.regions, null, 4)}`);
         return this; // chainable
     }
 
