@@ -99,9 +99,7 @@ sourceSets {
         }
         resources {
             srcDir 'src/main/resources'
-            exclude '**/.gitkeep'
-            exclude '**/*.scss'
-            exclude '**/*.ts'
+            exclude '*'
         }
     }
 }

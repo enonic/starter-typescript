@@ -19,6 +19,7 @@ export default class PagePageController extends PageController {
     get() {
         this.model.lang = 'nb-no';
         this.model.title = 'Title';
+        this.model.watch = this.request.port == 8889;
         return super.get();
     }
 

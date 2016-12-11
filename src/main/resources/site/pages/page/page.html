@@ -4,6 +4,9 @@
         <meta charset="UTF-8"/>
         <meta name="viewport" content="width=device-width, initial-scale=1"/>
         <title data-th-text="${title}"></title>
+        <th:block data-th-if="${watch}">
+            <script src="//localhost:35729/livereload.js?snipver=1" async="" defer=""></script>
+        </th:block>
     </head>
     <body>
         <main data-portal-region="main">
