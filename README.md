@@ -47,20 +47,37 @@ Then we can watch typescript files with
 
 ## Todo
 
-* Add TS logo to README.md
-* Extend the Controller definition
-* Add type definitions (request, etc)
+* Include part example
+* Include sass compilation
 * Add example usage of node module in controller
 * Build package.json dependancies into build/resources/main/site/lib
 * Add liveReload probably by using gulp-livereload, http-proxy and express
+* Include service example
+* Include content-type example with index.ts
+* Include mixin example with index.ts
+* Include siteConfig example
+* Include client-side js compilation
+* Include filter example
+* Include error example
+* Move definitions to own library
+* Add TS logo to README.md
+* Add smart debug logging from HTTP headers
+* Add sass/css tachyons
 
 ## Compatibility
 
 | Version       | XP version |
 | ------------- | ---------- |
+| 1.0.1         | 6.8.0      |
 | 1.0.0         | 6.8.0      |
 
 ## Changelog
+
+### 1.0.1
+
+* Include examples for layout
+* Extend the Controller definition
+* Add type definitions (request, etc)
 
 ### 1.0.0
 
