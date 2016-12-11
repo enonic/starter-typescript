@@ -47,7 +47,6 @@ Then we can watch typescript files with
 
 ## Todo
 
-* Include part example
 * Include sass compilation
 * Add example usage of node module in controller
 * Build package.json dependancies into build/resources/main/site/lib
@@ -75,7 +74,7 @@ Then we can watch typescript files with
 
 ### 1.0.1
 
-* Include examples for layout
+* Include examples for layout and part
 * Extend the Controller definition
 * Add type definitions (request, etc)
 
