@@ -22,22 +22,33 @@ var tsGlob = srcResourcesDir + '/**/*.ts';
 var dtsGlob = srcResourcesDir + '/**/*.d.ts';
 var tsFiles = glob.sync(tsGlob, { absolute: true, ignore: dtsGlob });
 var dtsFiles = glob.sync(dtsGlob, { absolute: true });
+var tsBuildTasks = tsFiles.map(f => 'build:'+ f);
 //console.log('tsFiles:' + JSON.stringify(tsFiles, null, 4));
 //console.log('dtsFiles:' + JSON.stringify(dtsFiles, null, 4));
 //process.exit()
 
 tsFiles.forEach(function(tsFile) {
-    var tsProject = ts.createProject('tsconfig.json');
-    gulp.task(tsFile, (done) => {
-        gulp.src([tsFile, dtsGlob], { base: srcResourcesDir })
-            //.pipe($.debug({ title: 'tsFile:'}))
-            .pipe($.plumber())
-            .pipe(tsProject())
-            .pipe(gulp.dest(dstResourcesDir));
-            //.pipe($.livereload());
+
+    function buildTsFile() {
+        var tsProject = ts.createProject('tsconfig.json');
+        return gulp.src([tsFile, dtsGlob], { base: srcResourcesDir })
+        //.pipe($.debug({ title: 'tsFile:'}))
+        .pipe($.plumber())
+        .pipe(tsProject())
+        .pipe(gulp.dest(dstResourcesDir));
+    }
+
+    gulp.task('build:' + tsFile, (done) => {
+        buildTsFile();
         done();
     });
-});
+
+    gulp.task('watch:' + tsFile, (done) => {
+        buildTsFile().pipe($.livereload());
+        done();
+    });
+
+}); // tsFiles.forEach
 
 gulp.task('build:node_modules', function () {
     return gulp.src(
@@ -50,7 +61,7 @@ gulp.task('build:node_modules', function () {
         .pipe(gulp.dest(dstSiteDir + '/lib'));
 });
 
-gulp.task('build', ['build:node_modules'].concat(tsFiles));
+gulp.task('build', ['build:node_modules'].concat(tsBuildTasks));
 
 gulp.task('watch', ['build'], function() {
     $.livereload({ start: true });
@@ -58,7 +69,7 @@ gulp.task('watch', ['build'], function() {
     app.use(express.static(__dirname)).listen(expressPort);
     //gulp.watch(sassFiles   , ['distCssTask']);
     //gulp.watch(assetJsFiles, ['distJsTask']);
-    //gulp.watch(files       , event => { gulp.start(event.path); });
+    gulp.watch(tsFiles, event => { gulp.start('watch:' + event.path); });
 });
 
 gulp.task('default', ['build']);

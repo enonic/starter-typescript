@@ -60,9 +60,14 @@ repositories {
 // Gulp
 //──────────────────────────────────────────────────────────────────────────────
 
-task gulp_build(type: GulpTask) {
+task gulp_build(type: GulpTask, dependsOn: 'installGulp') {
     description = 'Build using gulp'
     args = ["--color", "--gulpfile", "gulpfile.js", "build"]
+}
+
+task gulp_watch(type: GulpTask, dependsOn: 'installGulp') {
+    description = 'Build using gulp'
+    args = ["--color", "--gulpfile", "gulpfile.js", "watch"]
 }
 
 gulp {
@@ -71,9 +76,6 @@ gulp {
     // Whether colors should output on the terminal
     colors = true
 }
-
-// makes sure on each build that gulp is installed
-gulp_build.dependsOn 'installGulp'
 
 // processes your package.json before running gulp build
 //gulp_build.dependsOn 'npmInstall'
@@ -98,6 +100,7 @@ sourceSets {
         resources {
             srcDir 'src/main/resources'
             exclude '**/.gitkeep'
+            exclude '**/*.scss'
             exclude '**/*.ts'
         }
     }
