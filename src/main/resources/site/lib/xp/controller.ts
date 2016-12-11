@@ -1,5 +1,5 @@
 'use strict';
-/// <reference path="./global.ts" />
+/// <reference path="./global.d.ts" />
 // Importing gradle dependencies via TS or ES2015 gives:
 // error TS2307: Cannot find module 'xp/thymeleaf'
 // So going old school:

@@ -12,6 +12,15 @@ buildscript {
     }
 }
 
+plugins {
+  id "com.moowork.gulp" version "1.0.1"
+}
+
+//──────────────────────────────────────────────────────────────────────────────
+// classname: AppPlugin
+// defines: app, include, compile, runtime, build, jar, sourceSets
+//──────────────────────────────────────────────────────────────────────────────
+
 apply plugin: 'com.enonic.xp.app'
 
 app {
@@ -46,6 +55,32 @@ repositories {
         url 'http://repo.enonic.com/public'
     }
 }
+
+//──────────────────────────────────────────────────────────────────────────────
+// Gulp
+//──────────────────────────────────────────────────────────────────────────────
+
+task gulp_build(type: GulpTask) {
+    description = 'Build using gulp'
+    args = ["--color", "--gulpfile", "gulpfile.js", "build"]
+}
+
+gulp {
+    // Set the directory where gulpfile.js should be found
+    workDir = file("${project.projectDir}")
+    // Whether colors should output on the terminal
+    colors = true
+}
+
+// makes sure on each build that gulp is installed
+gulp_build.dependsOn 'installGulp'
+
+// processes your package.json before running gulp build
+//gulp_build.dependsOn 'npmInstall'
+
+// runs "gulp build" as part of your gradle build
+build.dependsOn 'gulp_build'
+build.mustRunAfter 'gulp_build'
 
 //──────────────────────────────────────────────────────────────────────────────
 // Gradle
