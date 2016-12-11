@@ -5,6 +5,7 @@
     "yarn": "^0.17.10"
   },
   "license": "Apache-2.0",
+  "name": "enonic-xp-starter-typescript",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/enonic/starter-typescript"
@@ -18,5 +19,6 @@
     "tsc": "node_modules/.bin/tsc",
     "watch": "node_modules/.bin/tsc -w;",
     "yarn": "node_modules/.bin/yarn"
-  }
+},
+  "version": "1.0.1"
 }
