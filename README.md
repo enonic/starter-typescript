@@ -18,7 +18,7 @@ To get started, use the `toolbox` script to initiate your project:
 
     npm run install
 
-## Watch (no liveReload yet)
+## Watch
 
 First you need to build the app at least once:
 
@@ -47,10 +47,7 @@ Then we can watch typescript files with
 
 ## Todo
 
-* Include sass compilation
 * Add example usage of node module in controller
-* Build package.json dependancies into build/resources/main/site/lib
-* Add liveReload probably by using gulp-livereload, http-proxy and express
 * Include service example
 * Include content-type example with index.ts
 * Include mixin example with index.ts
@@ -67,10 +64,15 @@ Then we can watch typescript files with
 
 | Version       | XP version |
 | ------------- | ---------- |
-| 1.0.1         | 6.8.0      |
-| 1.0.0         | 6.8.0      |
+| 1.0.*         | 6.8.0      |
 
 ## Changelog
+
+### 1.0.2
+
+* Include sass compilation
+* Build package.json dependancies into build/resources/main/site/lib
+* Add liveReload probably by using gulp-livereload, http-proxy and express
 
 ### 1.0.1
 

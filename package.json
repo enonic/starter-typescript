@@ -35,5 +35,5 @@
     "watch": "./gradlew gulp_watch;",
     "yarn": "node_modules/.bin/yarn"
   },
-  "version": "1.0.1"
+  "version": "1.0.2"
 }
