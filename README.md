@@ -64,7 +64,8 @@ Then we can watch typescript files with
 
 | Version       | XP version |
 | ------------- | ---------- |
-| 1.0.*         | 6.8.0      |
+| 1.0.x         | 6.8.0 - 6.11.x |
+| 1.1.x         | 6.8.0 - |
 
 ## Changelog
 
