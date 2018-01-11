@@ -1,23 +1,15 @@
 plugins {
     id 'java'
-    id 'com.enonic.xp.app' version '1.0.11'
+    id 'com.enonic.xp.app' version '1.0.15'
     id 'com.moowork.gulp' version '1.2.0'
 }
 
-xp {
-  version = xpVersion
-}
-
-//──────────────────────────────────────────────────────────────────────────────
-// classname: AppPlugin
-// defines: app, include, compile, runtime, build, jar, sourceSets
-//──────────────────────────────────────────────────────────────────────────────
-
 app {
-    name = project.ext.appName
-    displayName = project.ext.displayName
+    name = project.appName
+    displayName = 'TypeScript Starter Kit'
     vendorName = 'Enonic AS'
     vendorUrl = 'http://enonic.com'
+    systemVersion = "${xpVersion}"
 }
 
 dependencies {
@@ -64,9 +56,6 @@ gulp {
     // Whether colors should output on the terminal
     colors = true
 }
-
-// processes your package.json before running gulp build
-//gulp_build.dependsOn 'npmInstall'
 
 // runs "gulp build" as part of your gradle build
 build.dependsOn 'gulp_build'

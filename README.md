@@ -66,8 +66,13 @@ Then we can watch typescript files with
 | ------------- | ---------- |
 | 1.0.x         | 6.8.0 - 6.11.x |
 | 1.1.x         | 6.8.0 - |
+| 1.2.0         | 6.12.0+ |
 
 ## Changelog
+
+### 1.2.0
+
+* Upgraded to the latest version of the Gradle plugin
 
 ### 1.0.2
 
