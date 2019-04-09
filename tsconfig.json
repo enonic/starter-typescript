@@ -1,19 +1,14 @@
 {
     "compilerOptions": {
-        "rootDir": "./src/main/resources",
-        "module": "commonjs",
-        "target": "es5",
-        "noImplicitAny": false,
-        "sourceMap": false,
-        "outDir": "./build/resources/main",
-        "noEmitOnError": true,
-        "declaration": false
+        "module": "amd",
+        "sourceMap": true
     },
     "exclude": [
         "node_modules",
-        "dist"
+        "dist",
+        "build/**/*"
     ],
-    "include": [
+    "files": [
         "src/main/resources/**/*.ts",
         "src/main/resources/**/*.d.ts"
     ]

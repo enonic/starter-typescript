@@ -1,5 +1,5 @@
 plugins {
-    id 'com.enonic.xp.app' version '1.0.17'
+    id 'com.enonic.xp.app' version '2.0.0'
     id 'com.moowork.gulp' version '1.2.0'
 }
 
@@ -7,7 +7,7 @@ app {
     name = project.appName
     displayName = 'TypeScript Starter Kit'
     vendorName = 'Enonic AS'
-    vendorUrl = 'http://enonic.com'
+    vendorUrl = 'https://enonic.com'
     systemVersion = "${xpVersion}"
 }
 
@@ -16,14 +16,14 @@ dependencies {
     compile "com.enonic.xp:portal-api:${xpVersion}"
     include "com.enonic.xp:lib-content:${xpVersion}"
     include "com.enonic.xp:lib-portal:${xpVersion}"
-    include "com.enonic.xp:lib-thymeleaf:${xpVersion}"
+    include "com.enonic.lib:lib-thymeleaf:2.0.0-RC1"
+    //include "com.enonic.lib:lib-http-client:2.0.0"
+    //include "com.enonic.lib:lib-mustache:2.0.0"
     //include "com.enonic.xp:lib-xslt:${xpVersion}"
-    //include "com.enonic.xp:lib-mustache:${xpVersion}"
     //include "com.enonic.xp:lib-i18n:${xpVersion}"
     //include "com.enonic.xp:lib-auth:${xpVersion}"
     //include "com.enonic.xp:lib-cache:${xpVersion}"
     //include "com.enonic.xp:lib-context:${xpVersion}"
-    //include "com.enonic.xp:lib-http-client:${xpVersion}"
     //include "com.enonic.xp:lib-io:${xpVersion}"
     //include "com.enonic.xp:lib-mail:${xpVersion}"
     //include "com.enonic.xp:lib-websocket:${xpVersion}"
@@ -35,16 +35,21 @@ repositories {
     xp.enonicRepo()
 }
 
+node {
+    download = true
+    version = '10.15.3'
+}
+
 //──────────────────────────────────────────────────────────────────────────────
 // Gulp
 //──────────────────────────────────────────────────────────────────────────────
 
-task gulp_build(type: GulpTask, dependsOn: 'installGulp') {
+task gulp_build(type: GulpTask, dependsOn: npmInstall) {
     description = 'Build using gulp'
     args = ["--color", "--gulpfile", "gulpfile.js", "build"]
 }
 
-task gulp_watch(type: GulpTask, dependsOn: 'installGulp') {
+task gulp_watch(type: GulpTask, dependsOn: npmInstall) {
     description = 'Build using gulp'
     args = ["--color", "--gulpfile", "gulpfile.js", "watch"]
 }

@@ -1,10 +1,10 @@
-declare namespace app {
+declare module app {
     export function name(): string;
     export function version(): string;
     export function config(): any;
 }
 
-declare namespace log {
+declare module log {
     export function debug(args:any): void;
     export function info(args:any): void;
     export function warning(args:any): void;

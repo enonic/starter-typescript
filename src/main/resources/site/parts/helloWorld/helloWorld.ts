@@ -1,12 +1,13 @@
 'use strict';
-/// <reference path="../../lib/xp/global.ts" />
+/// <reference path="../../lib/xp/global.d.ts" />
 import { PartController } from '../../lib/xp/part/controller';
 
 const name = 'helloWorld';
 const type = 'part';
-const viewFile = resolve(`${name}.html`);
+//const viewFile = resolve(`${name}.html`);
+const viewFile = 'helloWorld.html';
 
-export default class ExamplePartController extends PartController {
+export class ExamplePartController extends PartController {
 
     constructor(request: any) {
         super(request);

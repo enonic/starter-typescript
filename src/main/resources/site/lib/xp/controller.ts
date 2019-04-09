@@ -1,20 +1,19 @@
-'use strict';
 /// <reference path="./global.d.ts" />
 // Importing gradle dependencies via TS or ES2015 gives:
 // error TS2307: Cannot find module 'xp/thymeleaf'
 // So going old school:
 const libs = {
     xp: {
-        portal:    require('xp/portal'),
+        portal: require('xp/portal'),
         thymeleaf: require('xp/thymeleaf')
     }
 };
-const xpPortalGetComponent  = libs.xp.portal.getComponent;
-const xpPortalGetContent    = libs.xp.portal.getContent;
+const xpPortalGetComponent = libs.xp.portal.getComponent;
+const xpPortalGetContent = libs.xp.portal.getContent;
 const xpPortalGetSiteConfig = libs.xp.portal.getSiteConfig;
-const xpThymeleafRender     = libs.xp.thymeleaf.render;
+const xpThymeleafRender = libs.xp.thymeleaf.render;
 
-export abstract class Controller {
+export class Controller {
     body: string;
     component: any;
     config: any;
@@ -39,13 +38,13 @@ export abstract class Controller {
         this.request = request;
         this.cookies = request.cookies;
         this.headers = request.headers;
-        this.method  = request.method;
-        this.mode    = request.mode;
-        this.params  = request.params;
+        this.method = request.method;
+        this.mode = request.mode;
+        this.params = request.params;
 
-        this.content   = xpPortalGetContent(); // Some pages, layouts and parts may not require content...
+        this.content = xpPortalGetContent(); // Some pages, layouts and parts may not require content...
         this.component = xpPortalGetComponent() || this.content.page;
-        this.config    = this.component.config;
+        this.config = this.component.config;
 
         this.siteConfig = xpPortalGetSiteConfig();
         this.model = {};
@@ -56,6 +55,7 @@ export abstract class Controller {
         log.info(`${this.name} ${this.type} model:${JSON.stringify(this.model, null, 4)}`);
         return this; // chainable
     }
+
     /*
     log.info(`${this.name} ${this.type} controller:${JSON.stringify(this, null, 4)}`); // Everything can be too much :)
     log.info(`${this.name} ${this.type} content:${JSON.stringify(this.content, null, 4)}`);
@@ -82,12 +82,16 @@ export abstract class Controller {
 
     buildResponse() {
         log.debug(`Controller.buildResponse()`);
-        switch (this.method) { case 'GET': this.get(); break; }
+        switch (this.method) {
+        case 'GET':
+            this.get();
+            break;
+        }
         this.render();
         this.responseContentType = 'text/html';
         this.status = 200;
         this.response = {
-            body:   this.body,
+            body: this.body,
             contentType: this.responseContentType,
             status: this.status
         };
@@ -95,21 +99,20 @@ export abstract class Controller {
         return this; // chainable
     }
 
-    public static handleRequest(request: any): any {}
-
 } // abstract class Controller
 
 
-
-export abstract class ControllerWithRegions extends Controller {
+export abstract class ControllerWithRegions
+    extends Controller {
     regions: any;
+
     //regionsArray: array;
 
     constructor(request) {
         super(request);
         this.regions = this.component.regions;
         this.model.regions = this.regions;
-        this.model.regionsArray = Object.keys(this.regions).map(k=>this.regions[k]);
+        this.model.regionsArray = Object.keys(this.regions).map(k => this.regions[k]);
         //log.info(`${this.name} ${this.type} this.model.regions:${JSON.stringify(this.model.regions, null, 4)}`);
     }
 
