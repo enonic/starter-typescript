@@ -1,6 +1,6 @@
 'use strict';
-/// <reference path="../../lib/xp/global.ts" />
-import { PageController } from '../../lib/xp/page/controller';
+/// <reference path="../../../lib/xp/global.ts" />
+import { PageController } from '../../../lib/xp/page/controller';
 
 const name = 'page';
 const type = 'page';

@@ -1,6 +1,6 @@
 'use strict';
-/// <reference path="../../lib/xp/global.ts" />
-import { LayoutController } from '../../lib/xp/layout/controller';
+/// <reference path="../../../lib/xp/global.ts" />
+import { LayoutController } from '../../../lib/xp/layout/controller';
 
 const name = 'grid';
 const type = 'layout';

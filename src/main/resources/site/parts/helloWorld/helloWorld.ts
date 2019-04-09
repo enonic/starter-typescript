@@ -1,6 +1,6 @@
 'use strict';
-/// <reference path="../../lib/xp/global.d.ts" />
-import { PartController } from '../../lib/xp/part/controller';
+/// <reference path="../../../lib/xp/global.d.ts" />
+import { PartController } from '../../../lib/xp/part/controller';
 
 const name = 'helloWorld';
 const type = 'part';
