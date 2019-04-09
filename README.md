@@ -68,8 +68,13 @@ Then we can watch typescript files with
 | 1.1.x         | 6.8.0 - |
 | 1.2.0         | 6.12.0+ |
 | 1.3.0         | 6.12.0+ |
+| 1.4.0         | 7.+ |
 
 ## Changelog
+
+### 1.4.0
+
+* Upgraded to be compatible with XP7
 
 ### 1.3.0
 
